@@ -3,11 +3,16 @@ import React from "react";
 interface SquareProps {
     value: string | null;
     onClick: () => void;
+    isWinningSquare: boolean;
 }
 
-const Square: React.FC<SquareProps> = ({ value, onClick }) => {
+const Square: React.FC<SquareProps> = ({ value, onClick, isWinningSquare }) => {
     return (
-        <button className="square" onClick={onClick} disabled={!!value}>
+        <button
+            className={`square ${isWinningSquare ? 'winning-square' : ''}`}
+            onClick={onClick}
+            disabled={!!value}
+        >
             {value}
         </button>
     );

@@ -1,52 +1,101 @@
 /* General Styles */
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+  font-family: 'Poppins', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f4f4f4;
+  background-color: #f0f0f0; /* Soft background */
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 /* Scoreboard */
 .scoreboard {
   text-align: center;
   margin-bottom: 20px;
-  padding: 15px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 320px;
+  width: 100%;
+  transition: background-color 0.3s ease; /* Smooth transition */
 }
 
+/* Dark Theme */
+body[data-theme="dark"] {
+  background-color: #121212;
+  color: white;
+}
+
+body[data-theme="dark"] .scoreboard,
+body[data-theme="dark"] .scores {
+  color: white;
+}
+
+/* Score Container */
 .scores {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  font-size: 20px;
-  font-weight: bold;
+  justify-content: space-between;
+  gap: 30px;
+  font-size: 22px;
+  font-weight: 600;
   color: #333;
+  margin-bottom: 15px;
 }
 
-.active {
-  color: #007bff;
-  transition: color 0.3s ease-in-out;
+/* Individual Score Box */
+.score {
+  padding: 10px 20px;
+  border-radius: 8px;
+  background-color: #f5f5f5;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease-in-out;
 }
+
+.score:hover {
+  background-color: #e9ecef;
+}
+
+/* Dark Mode Score */
+body[data-theme="dark"] .score {
+  background-color: #444;
+  color: white;
+}
+
+body[data-theme="dark"] .score:hover {
+  background-color: #555;
+}
+
+/* Highlight Winner */
+.highlight {
+  font-size: 24px;
+  font-weight: 700;
+  color: #28a745;
+  transition: 0.3s ease-in-out;
+}
+
+body[data-theme="dark"] .highlight {
+  color: #28a745;
+}
+
+/* Score Colors */
+.x-score { background-color: #007bff; color: white; }
+.o-score { background-color: #ff4500; color: white; }
+.draw-score { background-color: #6c757d; color: white; }
 
 /* Reset Button */
 .reset-button {
-  padding: 12px 24px;
+  padding: 14px 30px;
   font-size: 18px;
   border: none;
   background-color: #dc3545;
   color: white;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 50px;
   margin-top: 20px;
   transition: background-color 0.3s ease, transform 0.2s ease;
+  width: 100%;
+  font-weight: 600;
 }
 
 .reset-button:hover {
@@ -58,33 +107,45 @@ body {
   transform: scale(0.95);
 }
 
+/* Dark Mode Reset Button */
+body[data-theme="dark"] .reset-button {
+  background-color: #b22222;
+}
+
+body[data-theme="dark"] .reset-button:hover {
+  background-color: #8b0000;
+}
+
 /* Game Board */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 5px;
-  max-width: 320px;
+  grid-template-columns: repeat(3, 100px);
+  grid-template-rows: repeat(3, 100px);
+  gap: 10px;
   margin: 20px auto;
+  transition: transform 0.5s ease-in-out;
 }
 
-/* Individual Squares */
+/* Square Styles */
 .square {
   width: 100px;
   height: 100px;
-  font-size: 28px;
-  font-weight: bold;
+  font-size: 32px;
+  font-weight: 700;
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  border: 3px solid #333;
+  border: 2px solid #ddd;
   background-color: #fff;
-  transition: background-color 0.2s ease, transform 0.1s ease;
+  border-radius: 12px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 .square:hover {
-  background-color: #f8f9fa;
+  background-color: #e9ecef;
+  transform: scale(1.05);
 }
 
 .square:disabled {
@@ -93,21 +154,35 @@ body {
   color: #666;
 }
 
-/* Responsive Design */
-@media (max-width: 400px) {
-  .board {
-    max-width: 280px;
-  }
+.square.filled {
+  background-color: #f0f0f0;
+}
 
-  .square {
-    width: 90px;
-    height: 90px;
-    font-size: 24px;
-  }
+.square:active {
+  transform: scale(0.98);
+}
 
-  .scores {
-    font-size: 18px;
-  }
+/* Dark Mode Squares */
+body[data-theme="dark"] .square {
+  background-color: #333;
+  border-color: #555;
+  color: white;
+}
+
+body[data-theme="dark"] .square:hover {
+  background-color: #444;
+}
+
+/* Winning Line Highlight */
+.winning-square {
+  background-color: #28a745 !important;
+  color: white !important;
+  animation: pulse 0.5s infinite alternate;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.1); }
 }
 
 /* Difficulty Selector */
@@ -115,30 +190,28 @@ body {
   margin-top: 20px;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 15px;
   font-size: 18px;
-  font-weight: bold;
+  font-weight: 600;
   color: #333;
 }
 
-/* Label */
 .difficulty-selector label {
   font-size: 18px;
 }
 
-/* Dropdown (Select Box) */
 .difficulty-selector select {
-  padding: 8px 12px;
+  padding: 12px 18px;
   font-size: 16px;
   border: 2px solid #007bff;
-  border-radius: 6px;
+  border-radius: 8px;
   background-color: white;
+  color: black;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   outline: none;
 }
 
-/* Hover & Focus Effects */
 .difficulty-selector select:hover {
   background-color: #f8f9fa;
 }
@@ -148,45 +221,82 @@ body {
   box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
 }
 
-/* Responsive Design */
-@media (max-width: 400px) {
-  .difficulty-selector {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .difficulty-selector select {
-    width: 100%;
-  }
+/* Dark Mode Difficulty Selector */
+body[data-theme="dark"] .difficulty-selector {
+  color: white;
 }
 
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-template-rows: repeat(3, 100px);
-  gap: 5px;
-  transition: transform 0.5s ease-in-out;
-}
-
-.square {
-  width: 100px;
-  height: 100px;
-  font-size: 28px;
-  font-weight: bold;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  border: 2px solid #333;
+body[data-theme="dark"] .difficulty-selector select {
   background-color: white;
-  transition: background-color 0.2s ease;
+  color: black;
+  border-color: #007bff;
 }
 
-.square.filled {
-  background-color: #f0f0f0;
+body[data-theme="dark"] .difficulty-selector select:hover {
+  background-color: #e0e0e0;
 }
 
-.square:hover {
-  background-color: #f8f9fa;
+/* Theme Selector */
+.theme-selector {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 18px;
+}
+
+.theme-selector select {
+  padding: 10px 15px;
+  border: 2px solid #007bff;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.theme-selector select:focus {
+  outline: none;
+  border-color: #0056b3;
+  box-shadow: 0 0 5px rgba(0, 91, 187, 0.5);
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+  width: 50px;
+  height: 26px;
+  background-color: #ddd;
+  border-radius: 50px;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3px;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.theme-toggle::before {
+  content: "☀️";
+  position: absolute;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  transition: transform 0.3s ease-in-out;
+}
+
+body[data-theme="dark"] .theme-toggle {
+  background-color: #444;
+}
+
+body[data-theme="dark"] .theme-toggle::before {
+  content: "🌙";
+  transform: translateX(24px);
 }

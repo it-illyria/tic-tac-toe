@@ -1,23 +1,24 @@
+// game-logic.ts
 export type BoardType = (null | "X" | "O")[];
 
-export function checkWinner(board: BoardType): "X" | "O" | null {
+export function checkWinner(board: BoardType): { winner: "X" | "O" | null; line: number[] | null } {
     const winningCombinations = [
         [0, 1, 2], [3, 4, 5], [6, 7, 8],
         [0, 3, 6], [1, 4, 7], [2, 5, 8],
         [0, 4, 8], [2, 4, 6]
     ];
 
-    for (const [a, b, c] of winningCombinations) {
+    for (const line of winningCombinations) {
+        const [a, b, c] = line;
         if (board[a] && board[a] === board[b] && board[a] === board[c]) {
-            return board[a];
+            return { winner: board[a], line: line };
         }
     }
-    return null;
+    return { winner: null, line: null };
 }
 
-// 🔥 AI using Minimax Algorithm
 function minimax(board: BoardType, depth: number, isMaximizing: boolean): number {
-    const winner = checkWinner(board);
+    const { winner } = checkWinner(board);
     if (winner === "X") return -10 + depth;
     if (winner === "O") return 10 - depth;
     if (!board.includes(null)) return 0;
