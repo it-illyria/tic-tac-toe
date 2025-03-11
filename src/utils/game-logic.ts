@@ -1,4 +1,3 @@
-// game-logic.ts
 export type BoardType = (null | "X" | "O")[];
 
 export function checkWinner(board: BoardType): { winner: "X" | "O" | null; line: number[] | null } {
@@ -36,7 +35,6 @@ function minimax(board: BoardType, depth: number, isMaximizing: boolean): number
     return isMaximizing ? Math.max(...scores) : Math.min(...scores);
 }
 
-// 🔥 AI chooses best move
 export function getBestMove(board: BoardType, difficulty: "Easy" | "Medium" | "Hard"): number | null {
     const availableMoves = board.map((val, index) => (val === null ? index : null)).filter(val => val !== null) as number[];
 

@@ -262,6 +262,7 @@ body[data-theme="dark"] .difficulty-selector select:hover {
 }
 
 /* Theme Toggle Button */
+/* Theme Toggle Button */
 .theme-toggle {
   width: 50px;
   height: 26px;
@@ -299,4 +300,202 @@ body[data-theme="dark"] .theme-toggle {
 body[data-theme="dark"] .theme-toggle::before {
   content: "🌙";
   transform: translateX(24px);
+}
+
+.theme-timer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 78%;
+    padding: 10px 16px;
+    margin-bottom: 16px;
+}
+
+/* Timer Text */
+.theme-timer-container h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Dark Mode Support */
+body[data-theme="dark"] .theme-timer-container {
+    background-color: #2d2d2d;
+    box-shadow: 0 4px 6px rgba(255, 255, 255, 0.1);
+}
+
+body[data-theme="dark"] .theme-timer-container h2 {
+    color: #ffffff;
+}
+
+
+.navigation-links {
+  display: flex;
+  justify-content: space-between;
+  width: 83%;
+}
+
+.navigation-links a {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #2563eb;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.navigation-links a:hover {
+  color: #1e40af;
+  text-decoration: none;
+}
+
+/* 🏆 Leaderboard Container */
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🎯 Title */
+.leaderboard-container h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #007bff; /* Blue highlight */
+  margin-bottom: 16px;
+}
+
+/* 📊 Scoreboard Box */
+.leaderboard-box {
+  padding: 16px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+}
+
+/* 🔢 Score Text */
+.leaderboard-box p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #333;
+  margin: 8px 0;
+}
+
+/* 🔄 Back Link */
+.back-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 12px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.back-link:hover {
+  color: #0056b3;
+}
+
+/* 📜 Move History Container */
+.history-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔖 Title */
+.history-container h1 {
+  font-size: 2.2rem;
+  font-weight: bold;
+  color: #007bff; /* Blue highlight */
+  margin-bottom: 16px;
+}
+
+/* 📄 History Box */
+.history-box {
+  padding: 16px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  border: 1px solid #ddd;
+}
+
+/* 📌 Move List */
+.history-box ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+/* 🎲 Move Item */
+.history-box li {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #333;
+  margin: 6px 0;
+}
+
+/* 🕹 No Moves Text */
+.history-box p {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #666;
+}
+
+/* 🔄 Back Link */
+.back-link {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #007bff;
+  margin-top: 12px;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.back-link:hover {
+  color: #0056b3;
+}
+
+/* 🏠 Home Page Container */
+.home-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+}
+
+/* 👋 Title */
+.home-page h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #007bff; /* Blue highlight */
+  margin-bottom: 16px;
+}
+
+/* 📋 Description Text */
+.home-page p {
+  font-size: 1.2rem;
+  color: #333;
+  margin-bottom: 24px;
+  font-weight: 500;
+}
+
+/* 🔄 Go to Game Link */
+.home-page .text-blue-500 {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #007bff;
+  text-decoration: none;
+  transition: 0.3s ease-in-out;
+}
+
+.home-page .text-blue-500:hover {
+  color: #0056b3;
 }
